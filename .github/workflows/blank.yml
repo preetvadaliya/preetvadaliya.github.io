@@ -3,13 +3,28 @@ on: pull_request
 jobs:
   example_comment_pr:
     runs-on: ubuntu-latest
-    name: An example job to comment a PR
+    name: An example job to comment a PR and provide checkout instructions
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Get PR Branch Name
+        id: get_pr_branch_name
+        run: echo "PR_BRANCH=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            Hello world ! :wave:
+            Hello! Thank you for opening this pull request :wave: To review the changes locally, you can follow these steps:
+
+            1. Open your terminal.
+            2. Run the following command to fetch the pull request changes:
+               ```bash
+               git fetch origin pull/${{ github.event.pull_request.number }}/head:$PR_BRANCH
+               ```
+            3. Checkout the pull request branch with:
+               ```bash
+               git checkout $PR_BRANCH
+               ```
+            4. Now you can review and test the changes locally.
