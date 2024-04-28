@@ -1,2 +1,1 @@
-# preetvadaliya.github.io
 
