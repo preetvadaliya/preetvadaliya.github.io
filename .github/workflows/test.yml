@@ -15,7 +15,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            Hello! Thank you for opening this pull request :wave: To review the changes locally, you can follow these steps:
+            Hello :wave: @{${{ steps.get_pr_opener.outputs.pr_opener }}}, thank you for opening this pull request! To review the changes locally, follow these steps:
 
             1. Open your terminal.
             2. Run the following command to fetch the pull request changes:
