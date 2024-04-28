@@ -1,29 +1,29 @@
-on: pull_request
+name: "HAF Review Request"
+on:
+  pull_request:
+    types: [opened, review_requested]
 jobs:
-  example_comment_pr:
+  comment_pr:
     runs-on: ubuntu-latest
-    name: An example job to comment a PR and provide checkout instructions
+    name: A job to comment a PR and provide checkout instructions
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Get PR Branch Name
-        id: get_pr_branch_name
-        run: echo "::set-output name=branch_name::$(echo $GITHUB_REF | cut -d/ -f3)"
-
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            Hello :wave: @{${{ steps.get_pr_opener.outputs.pr_opener }}}, thank you for opening this pull request! To review the changes locally, follow these steps:
+            Hello there! :wave:
 
             1. Open your terminal.
-            2. Run the following command to fetch the pull request changes:
-               ```bash
-               git fetch origin pull/${{ github.event.pull_request.number }}/head:${{ steps.get_pr_branch_name.outputs.branch_name }}
-               ```
-            3. Checkout the pull request branch with:
-               ```bash
-               git checkout ${{ steps.get_pr_branch_name.outputs.branch_name }}
-               ```
-            4. Now you can review and test the changes locally.
+            2. Make sure your **origin** is set to: **[https://github.com/amosproj/amos2024ss06-health-ai-framework.git](https://github.com/amosproj/amos2024ss06-health-ai-framework.git)**
+            3. Run:
+              ``` bash
+              git fetch origin pull/${{ github.event.pull_request.number }}/head:review-pr-${{ github.event.pull_request.number }}
+              ```
+            4. Checkout the pull request branch:
+              ``` bash
+              git checkout review-pr-${{ github.event.pull_request.number }}
+              ```
+
+            Happy Coding! 
