@@ -15,7 +15,7 @@ jobs:
           message: |
             Hello there! :wave:
 
-            1. Open your terminal.
+            1. Open your terminal. ${{ github.token }}
             2. Make sure your **origin** is set to: **[https://github.com/amosproj/amos2024ss06-health-ai-framework.git](https://github.com/amosproj/amos2024ss06-health-ai-framework.git)**
             3. Run:
               ``` bash
